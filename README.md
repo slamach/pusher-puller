@@ -27,7 +27,7 @@ npm start
 npm build
 ```
 
-## Контакты
+## Contact
 Dmitry Sviridov  
 Telegram: [slamach](https://t.me/slamach)  
 Email: sviridov.dvv@gmail.com
