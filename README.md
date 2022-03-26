@@ -1,21 +1,21 @@
-# Pusher & Puller
+# Pusher & Puller (WIP)
 
-## About
-Web 3.0 learning project.  
-Authorize via WalletConnect, send ETH, attach messages and images from [Giphy](https://giphy.com).
+## About the Project
+Web 3.0 project created for learning purposes.  
 
-### Technologies
+You can authorize via WalletConnect, send ETH, attach messages and images from [Giphy](https://giphy.com).
 
-### Features
+### Built With
+- 
 
-## Getting started
+## Installation and Usage
 ```
 npm install
 ```
 
-To enable pre-commit hook you need to run `npm install` already in git repository.
+To make the pre-commit hook work, you need to run `npm install` when the project is already initialized as a Git repository.
 
-If you initialize git repostitory after installing, additionally run `npm run prepare`.
+If the project is initialized as a repository later, you need to additionally execute `npm run prepare`.
 
 ### Development
 ```
