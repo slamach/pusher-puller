@@ -30,6 +30,11 @@ export const StyledNav = styled.nav`
 `;
 
 export const StyledHeader = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
   padding: 25px 50px;
 
   ${HeaderLogo} {
