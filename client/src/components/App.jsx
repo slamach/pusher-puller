@@ -12,20 +12,20 @@ const App = (props) => {
       <GlobalStyle />
       <Header />
       <ReactFullpage
-          navigation
-          anchors={['sendcrypto', 'about']}
-          sectionSelector='.section'
-          render={comp => (
-            <ReactFullpage.Wrapper>
-              <SendCryptoPage className='section'>
-                  <h1>Page 1</h1>
-              </SendCryptoPage>
-              <AboutPage className='section'>
-                  <h1>Page 2</h1>
-              </AboutPage>
-            </ReactFullpage.Wrapper>
-          )}
-        />
+        navigation
+        anchors={['sendcrypto', 'about']}
+        sectionSelector=".section"
+        render={(comp) => (
+          <ReactFullpage.Wrapper>
+            <SendCryptoPage className="section">
+              <h1>Page 1</h1>
+            </SendCryptoPage>
+            <AboutPage className="section">
+              <h1>Page 2</h1>
+            </AboutPage>
+          </ReactFullpage.Wrapper>
+        )}
+      />
     </ThemeProvider>
   );
 };
