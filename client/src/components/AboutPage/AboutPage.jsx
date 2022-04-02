@@ -1,9 +1,11 @@
+import { AboutSection } from './AboutPageStyles';
+
 const AboutPage = (props) => {
   return (
-    <section className={props.className}>
+    <AboutSection className={props.className}>
       <h2>About</h2>
-    </section>
+    </AboutSection>
   );
-}
+};
 
 export default AboutPage;

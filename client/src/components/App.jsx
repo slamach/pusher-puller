@@ -12,7 +12,7 @@ const App = (props) => {
       <GlobalStyle />
       <Header />
       <ReactFullpage
-        navigation
+        touchSensitivity={8}
         anchors={['sendcrypto', 'about']}
         sectionSelector=".section"
         render={(comp) => (

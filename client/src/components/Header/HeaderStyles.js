@@ -1,16 +1,13 @@
+import { scaleValue } from 'components/AppStyles';
 import styled from 'styled-components';
 
 export const NavList = styled.ul`
   display: flex;
-  margin-right: 40px;
+  margin-right: ${scaleValue(40)}px;
   list-style: none;
 
-  @media ${({ theme }) => theme.media.small} {
-    display: none;
-  }
-
   li {
-    margin-right: 30px;
+    margin-right: ${scaleValue(30)}px;
 
     &:last-child {
       margin-right: 0;
@@ -19,9 +16,7 @@ export const NavList = styled.ul`
 `;
 
 export const HeaderLogo = styled.a`
-  @media ${({ theme }) => theme.media.small} {
-    width: 90px;
-  }
+  width: ${scaleValue(113)}px;
 `;
 
 export const StyledNav = styled.nav`
@@ -35,13 +30,9 @@ export const StyledHeader = styled.header`
   left: 0;
   right: 0;
   z-index: 10;
-  padding: 25px 50px;
+  padding: ${scaleValue(20)}px ${scaleValue(50)}px;
 
   ${HeaderLogo} {
     margin-right: auto;
-  }
-
-  @media ${({ theme }) => theme.media.small} {
-    padding: 15px;
   }
 `;

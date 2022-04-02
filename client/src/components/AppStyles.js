@@ -1,5 +1,22 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import InterMedium from 'assets/fonts/Inter-Medium.woff2';
+import KanitSemiBold from 'assets/fonts/Kanit-SemiBold.woff2';
+
+export const scaleValue = (value, idealViewportWidthType = 'large') => {
+  let idealViewportWidth;
+  switch (idealViewportWidthType) {
+    case 'medium':
+      idealViewportWidth = theme.breakpoints.medium;
+      break;
+    case 'small':
+      idealViewportWidth = theme.breakpoints.small;
+      break;
+    default:
+    case 'large':
+      idealViewportWidth = theme.breakpoints.large;
+  }
+  return value * (window.innerWidth / (idealViewportWidth + 140));
+};
 
 const breakpoints = {
   large: 1280,
@@ -38,6 +55,14 @@ export const GlobalStyle = createGlobalStyle`
     src: url('${InterMedium}') format('woff2');
   }
 
+  @font-face {
+    font-family: 'Kanit';
+    font-style: normal;
+    font-weight: 600;
+    font-display: block;
+    src: url('${KanitSemiBold}') format('woff2');
+  }
+
   *,
   *::after,
   *::before {
@@ -56,8 +81,8 @@ export const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
     scroll-behavior: smooth;
     font-family: ${theme.fonts.inter};
-    font-size: 18px;
-    line-height: 22px;
+    font-size: ${scaleValue(16)}px;
+    line-height: ${scaleValue(20)}px;
     font-weight: 500;
     color: ${theme.colors.text};
     background-color: ${theme.colors.mainBackground};
@@ -78,6 +103,19 @@ export const GlobalStyle = createGlobalStyle`
     color: inherit;
     text-decoration: none;
   }
+
+  .section {
+    * {
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+    }
+
+    &.active {
+      * {
+        opacity: 1;
+      }
+    }
+  }
 `;
 
 export const VisuallyHidden = styled.p`
@@ -92,17 +130,26 @@ export const VisuallyHidden = styled.p`
   clip: rect(0 0 0 0);
 `;
 
-export const Button = styled.button`
-  padding: 10px 20px 12px;
+export const SectionTitle = styled.p`
+  margin: 0;
   font-family: ${theme.fonts.kanit};
-  font-size: 18px;
-  line-height: 18px;
+  font-weight: 600;
+  font-size: ${scaleValue(42)}px;
+  line-height: ${scaleValue(42)}px;
+`;
+
+export const Button = styled.button`
+  padding: ${scaleValue(8)}px ${scaleValue(20)}px ${scaleValue(10)}px;
+  font-family: ${theme.fonts.kanit};
+  font-size: ${scaleValue(16)}px;
+  line-height: ${scaleValue(16)}px;
   font-weight: 600;
   color: #ffffff;
   background-color: ${theme.colors.pink};
   border: none;
-  border-radius: 20px;
+  border-radius: ${scaleValue(20)}px;
   cursor: pointer;
+  user-select: none;
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 
   @media ${theme.media.largeOnly} {
@@ -110,12 +157,5 @@ export const Button = styled.button`
       color: #eeeeee;
       background-color: ${theme.colors.pinkHover};
     }
-  }
-
-  @media ${theme.media.small} {
-    padding: 9px 15px 10px;
-    font-size: 14px;
-    line-height: 14px;
-    border-radius: 16px;
   }
 `;
