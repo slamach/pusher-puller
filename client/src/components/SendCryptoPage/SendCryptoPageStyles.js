@@ -7,6 +7,12 @@ export const SendCryptoContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 ${scaleValue(50)}px;
+
+  @media ${({ theme }) => theme.media.medium} {
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 ${scaleValue(25, 'medium')}px;
+  }
 `;
 
 export const SendCryptoSection = styled.section`

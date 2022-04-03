@@ -6,20 +6,21 @@ export const scaleValue = (value, idealViewportWidthType = 'large') => {
   let idealViewportWidth;
   switch (idealViewportWidthType) {
     case 'medium':
-      idealViewportWidth = theme.breakpoints.medium;
+      idealViewportWidth = theme.breakpoints.medium + 140;
       break;
     case 'small':
       idealViewportWidth = theme.breakpoints.small;
       break;
     default:
     case 'large':
-      idealViewportWidth = theme.breakpoints.large;
+      idealViewportWidth = theme.breakpoints.large + 140;
   }
-  return value * (window.innerWidth / (idealViewportWidth + 140));
+  return value * (window.innerWidth / idealViewportWidth);
 };
 
 const breakpoints = {
   large: 1280,
+  supermedium: 1030,
   medium: 768,
   small: 360,
 };
@@ -28,7 +29,7 @@ export const theme = {
   breakpoints,
   media: {
     largeOnly: `screen and (min-width: ${breakpoints.large}px)`,
-    medium: `screen and (max-width: ${breakpoints.large - 1}px)`,
+    medium: `screen and (max-width: ${breakpoints.supermedium - 1}px)`,
     small: `screen and (max-width: ${breakpoints.medium - 1}px)`,
   },
   fonts: {
@@ -86,6 +87,11 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 500;
     color: ${theme.colors.text};
     background-color: ${theme.colors.mainBackground};
+
+    @media ${({ theme }) => theme.media.medium} {
+      font-size: ${scaleValue(16, 'medium')}px;
+      line-height: ${scaleValue(20, 'medium')}px;
+    }
   }
 
   #root {
@@ -136,6 +142,11 @@ export const SectionTitle = styled.p`
   font-weight: 600;
   font-size: ${scaleValue(42)}px;
   line-height: ${scaleValue(42)}px;
+
+  @media ${({ theme }) => theme.media.medium} {
+    font-size: ${scaleValue(42, 'medium')}px;
+    line-height: ${scaleValue(42, 'medium')}px;
+  }
 `;
 
 export const Button = styled.button`
@@ -157,5 +168,13 @@ export const Button = styled.button`
       color: #eeeeee;
       background-color: ${theme.colors.pinkHover};
     }
+  }
+
+  @media ${({ theme }) => theme.media.medium} {
+    padding: ${scaleValue(8, 'medium')}px ${scaleValue(20, 'medium')}px
+      ${scaleValue(10, 'medium')}px;
+    font-size: ${scaleValue(16, 'medium')}px;
+    line-height: ${scaleValue(16, 'medium')}px;
+    border-radius: ${scaleValue(20, 'medium')}px;
   }
 `;

@@ -9,6 +9,13 @@ export const CryptoCardAddress = styled.p`
   font-size: ${scaleValue(10)}px;
   line-height: ${scaleValue(12)}px;
   user-select: none;
+
+  @media ${({ theme }) => theme.media.medium} {
+    top: ${scaleValue(20, 'medium')}px;
+    right: ${scaleValue(20, 'medium')}px;
+    font-size: ${scaleValue(10, 'medium')}px;
+    line-height: ${scaleValue(12, 'medium')}px;
+  }
 `;
 
 export const CryptoCardAmount = styled.p`
@@ -20,11 +27,24 @@ export const CryptoCardAmount = styled.p`
   line-height: ${scaleValue(22)}px;
   user-select: none;
 
+  @media ${({ theme }) => theme.media.medium} {
+    bottom: ${scaleValue(20, 'medium')}px;
+    left: ${scaleValue(20, 'medium')}px;
+    font-size: ${scaleValue(18, 'medium')}px;
+    line-height: ${scaleValue(22, 'medium')}px;
+  }
+
   span {
     margin-left: ${scaleValue(10)}px;
     font-size: ${scaleValue(24)}px;
     line-height: ${scaleValue(29)}px;
     letter-spacing: 0.025em;
+
+    @media ${({ theme }) => theme.media.medium} {
+      margin-left: ${scaleValue(10, 'medium')}px;
+      font-size: ${scaleValue(24, 'medium')}px;
+      line-height: ${scaleValue(29, 'medium')}px;
+    }
   }
 `;
 
@@ -67,11 +87,25 @@ export const CryptoCardContainer = styled.div`
     rgba(21, 21, 27, 0.25);
   border-radius: ${scaleValue(15)}px;
 
+  @media ${({ theme }) => theme.media.medium} {
+    width: ${scaleValue(300, 'medium')}px;
+    height: ${scaleValue(185, 'medium')}px;
+    box-shadow: 0 ${scaleValue(5, 'medium')}px ${scaleValue(10, 'medium')}px
+      ${scaleValue(2.5, 'medium')}px rgba(21, 21, 27, 0.25);
+    border-radius: ${scaleValue(15, 'medium')}px;
+  }
+
   img {
     position: absolute;
     top: ${scaleValue(20)}px;
     left: ${scaleValue(20)}px;
     width: ${scaleValue(32)}px;
     user-select: none;
+
+    @media ${({ theme }) => theme.media.medium} {
+      top: ${scaleValue(20, 'medium')}px;
+      left: ${scaleValue(20, 'medium')}px;
+      width: ${scaleValue(32, 'medium')}px;
+    }
   }
 `;
