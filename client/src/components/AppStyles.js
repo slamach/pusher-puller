@@ -92,6 +92,11 @@ export const GlobalStyle = createGlobalStyle`
       font-size: ${scaleValue(16, 'medium')}px;
       line-height: ${scaleValue(20, 'medium')}px;
     }
+
+    @media ${({ theme }) => theme.media.small} {
+      font-size: ${scaleValue(14, 'small')}px;
+      line-height: ${scaleValue(17, 'small')}px;
+    }
   }
 
   #root {
@@ -176,5 +181,12 @@ export const Button = styled.button`
     font-size: ${scaleValue(16, 'medium')}px;
     line-height: ${scaleValue(16, 'medium')}px;
     border-radius: ${scaleValue(20, 'medium')}px;
+  }
+
+  @media ${({ theme }) => theme.media.small} {
+    padding: ${scaleValue(9, 'small')}px ${scaleValue(15, 'small')}px;
+    font-size: ${scaleValue(14, 'small')}px;
+    line-height: ${scaleValue(14, 'small')}px;
+    border-radius: ${scaleValue(16, 'small')}px;
   }
 `;

@@ -10,6 +10,10 @@ export const NavList = styled.ul`
     margin-right: ${scaleValue(40, 'medium')}px;
   }
 
+  @media ${({ theme }) => theme.media.small} {
+    display: none;
+  }
+
   li {
     margin-right: ${scaleValue(30)}px;
 
@@ -29,6 +33,10 @@ export const HeaderLogo = styled.a`
   @media ${({ theme }) => theme.media.medium} {
     width: ${scaleValue(100, 'medium')}px;
   }
+
+  @media ${({ theme }) => theme.media.small} {
+    width: ${scaleValue(90, 'small')}px;
+  }
 `;
 
 export const StyledNav = styled.nav`
@@ -46,6 +54,10 @@ export const StyledHeader = styled.header`
 
   @media ${({ theme }) => theme.media.medium} {
     padding: ${scaleValue(15, 'medium')}px ${scaleValue(25, 'medium')}px;
+  }
+
+  @media ${({ theme }) => theme.media.small} {
+    padding: ${scaleValue(10, 'small')}px ${scaleValue(15, 'small')}px;
   }
 
   ${HeaderLogo} {

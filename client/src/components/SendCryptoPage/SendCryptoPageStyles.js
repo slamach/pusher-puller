@@ -13,6 +13,11 @@ export const SendCryptoContainer = styled.div`
     justify-content: center;
     padding: 0 ${scaleValue(25, 'medium')}px;
   }
+
+  @media ${({ theme }) => theme.media.small} {
+    font-size: ${scaleValue(16, 'small')}px;
+    line-height: ${scaleValue(20, 'small')}px;
+  }
 `;
 
 export const SendCryptoSection = styled.section`
