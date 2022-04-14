@@ -45,18 +45,16 @@ export const StyledNav = styled.nav`
 `;
 
 export const StyledHeader = styled.header`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
+  margin-bottom: ${scaleValue(15)}px;
   padding: ${scaleValue(20)}px ${scaleValue(50)}px;
 
   @media ${({ theme }) => theme.media.medium} {
+    margin-bottom: ${scaleValue(15, 'medium')}px;
     padding: ${scaleValue(15, 'medium')}px ${scaleValue(25, 'medium')}px;
   }
 
   @media ${({ theme }) => theme.media.small} {
+    margin-bottom: ${scaleValue(15, 'small')}px;
     padding: ${scaleValue(10, 'small')}px ${scaleValue(15, 'small')}px;
   }
 

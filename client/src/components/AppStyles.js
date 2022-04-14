@@ -6,14 +6,14 @@ export const scaleValue = (value, idealViewportWidthType = 'large') => {
   let idealViewportWidth;
   switch (idealViewportWidthType) {
     case 'medium':
-      idealViewportWidth = theme.breakpoints.medium + 140;
+      idealViewportWidth = theme.breakpoints.medium;
       break;
     case 'small':
       idealViewportWidth = theme.breakpoints.small;
       break;
     default:
     case 'large':
-      idealViewportWidth = theme.breakpoints.large + 140;
+      idealViewportWidth = theme.breakpoints.large;
   }
   return value * (window.innerWidth / idealViewportWidth);
 };
@@ -86,16 +86,87 @@ export const GlobalStyle = createGlobalStyle`
     line-height: ${scaleValue(20)}px;
     font-weight: 500;
     color: ${theme.colors.text};
-    background-color: ${theme.colors.mainBackground};
+    background:
+      radial-gradient(
+        60% ${scaleValue(432)}px at 100% 0,
+        rgba(208, 74, 143, 0.5) 0%,
+        rgba(208, 74, 143, 0) 100%
+      ),
+      radial-gradient(
+        50% ${scaleValue(360)}px at 50% 0,
+        rgba(83, 66, 194, 0.5) 0%,
+        rgba(83, 66, 194, 0) 100%
+      ),
+      radial-gradient(
+        50% ${scaleValue(435)}px at 50% 100%,
+        rgba(83, 66, 194, 0.5) 0,
+        rgba(83, 66, 194, 0) 100%
+      ),
+      radial-gradient(
+        50% ${scaleValue(350)}px at 100% 100%,
+        rgba(208, 74, 143, 0.5) 0,
+        rgba(208, 74, 143, 0) 100%
+      ),
+      ${theme.colors.mainBackground};
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 
     @media ${({ theme }) => theme.media.medium} {
       font-size: ${scaleValue(16, 'medium')}px;
       line-height: ${scaleValue(20, 'medium')}px;
+      background:
+        radial-gradient(
+          60% ${scaleValue(614, 'medium')}px at 100% 0,
+          rgba(208, 74, 143, 0.5) 0%,
+          rgba(208, 74, 143, 0) 100%
+        ),
+        radial-gradient(
+          50% ${scaleValue(512, 'medium')}px at 50% 0,
+          rgba(83, 66, 194, 0.5) 0%,
+          rgba(83, 66, 194, 0) 100%
+        ),
+        radial-gradient(
+          50% ${scaleValue(614, 'medium')}px at 50% 100%,
+          rgba(83, 66, 194, 0.5) 0,
+          rgba(83, 66, 194, 0) 100%
+        ),
+        radial-gradient(
+          50% ${scaleValue(512, 'medium')}px at 100% 100%,
+          rgba(208, 74, 143, 0.5) 0,
+          rgba(208, 74, 143, 0) 100%
+        ),
+        ${({ theme }) => theme.colors.mainBackground};
+      background-repeat: no-repeat;
+      background-attachment: fixed;
     }
 
     @media ${({ theme }) => theme.media.small} {
       font-size: ${scaleValue(14, 'small')}px;
       line-height: ${scaleValue(17, 'small')}px;
+      background:
+        radial-gradient(
+          55% ${scaleValue(413, 'small')}px at 100% 0,
+          rgba(208, 74, 143, 0.5) 0%,
+          rgba(208, 74, 143, 0) 100%
+        ),
+        radial-gradient(
+          80% ${scaleValue(413, 'small')}px at 50% 0,
+          rgba(83, 66, 194, 0.5) 0%,
+          rgba(83, 66, 194, 0) 100%
+        ),
+        radial-gradient(
+          58% ${scaleValue(305, 'small')}px at 50% 100%,
+          rgba(83, 66, 194, 0.5) 0,
+          rgba(83, 66, 194, 0) 100%
+        ),
+        radial-gradient(
+          84% ${scaleValue(360, 'small')}px at 100% 100%,
+          rgba(208, 74, 143, 0.5) 0,
+          rgba(208, 74, 143, 0) 100%
+        ),
+        ${({ theme }) => theme.colors.mainBackground};
+      background-repeat: no-repeat;
+      background-attachment: fixed;
     }
   }
 
@@ -113,19 +184,6 @@ export const GlobalStyle = createGlobalStyle`
   a {
     color: inherit;
     text-decoration: none;
-  }
-
-  .section {
-    * {
-      opacity: 0;
-      transition: opacity 0.4s ease-in-out;
-    }
-
-    &.active {
-      * {
-        opacity: 1;
-      }
-    }
   }
 `;
 
@@ -151,6 +209,11 @@ export const SectionTitle = styled.p`
   @media ${({ theme }) => theme.media.medium} {
     font-size: ${scaleValue(42, 'medium')}px;
     line-height: ${scaleValue(42, 'medium')}px;
+  }
+
+  @media ${({ theme }) => theme.media.small} {
+    font-size: ${scaleValue(30, 'small')}px;
+    line-height: ${scaleValue(30, 'small')}px;
   }
 `;
 
@@ -188,5 +251,17 @@ export const Button = styled.button`
     font-size: ${scaleValue(14, 'small')}px;
     line-height: ${scaleValue(14, 'small')}px;
     border-radius: ${scaleValue(16, 'small')}px;
+  }
+`;
+
+export const MainContainer = styled.main`
+  padding: 0 ${scaleValue(50)}px;
+
+  @media ${({ theme }) => theme.media.medium} {
+    padding: 0 ${scaleValue(25, 'medium')}px;
+  }
+
+  @media ${({ theme }) => theme.media.small} {
+    padding: 0 ${scaleValue(15, 'medium')}px;
   }
 `;

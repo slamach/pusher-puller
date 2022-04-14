@@ -3,9 +3,11 @@ import GiphyExample from 'assets/img/giphy-example.jpg';
 
 const Transaction = (props) => {
   return (
-    <TransactionContainer>
+    <TransactionContainer as={props.as}>
       <img src={GiphyExample} alt="Giphy Example" />
-      <p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lo...</p>
+      <p>
+        Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ip...
+      </p>
     </TransactionContainer>
   );
 };

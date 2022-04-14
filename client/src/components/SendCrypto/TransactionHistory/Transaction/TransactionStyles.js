@@ -23,9 +23,19 @@ export const TransactionContainer = styled.div`
       border-radius: ${scaleValue(20, 'medium')}px ${scaleValue(20, 'medium')}px
         0 0;
     }
+
+    @media ${({ theme }) => theme.media.small} {
+      height: ${scaleValue(275, 'small')}px;
+      border-radius: ${scaleValue(20, 'medium')}px ${scaleValue(20, 'medium')}px
+        0 0;
+    }
   }
 
   p {
+    display: flex;
+    align-items: center;
+    overflow-wrap: anywhere;
+    min-height: ${scaleValue(80)}px;
     margin: 0;
     padding: ${scaleValue(10)}px;
     font-size: ${scaleValue(12)}px;
@@ -35,6 +45,12 @@ export const TransactionContainer = styled.div`
       padding: ${scaleValue(10, 'medium')}px;
       font-size: ${scaleValue(12, 'medium')}px;
       line-height: ${scaleValue(15, 'medium')}px;
+    }
+
+    @media ${({ theme }) => theme.media.small} {
+      padding: ${scaleValue(10, 'small')}px;
+      font-size: ${scaleValue(12, 'small')}px;
+      line-height: ${scaleValue(15, 'small')}px;
     }
   }
 `;

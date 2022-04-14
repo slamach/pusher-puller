@@ -5,15 +5,17 @@ import { SendFormContainer } from './SendForm/SendFormStyles';
 
 export const SendSectionContainer = styled.section`
   width: ${scaleValue(350)}px;
-  margin-top: ${scaleValue(65)}px;
 
   @media ${({ theme }) => theme.media.medium} {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin-top: 0;
-    margin-bottom: ${scaleValue(30, 'medium')}px;
+  }
+
+  @media ${({ theme }) => theme.media.small} {
+    flex-direction: column;
+    justify-content: flex-start;
   }
 
   ${CryptoCardContainer} {
@@ -23,6 +25,11 @@ export const SendSectionContainer = styled.section`
     @media ${({ theme }) => theme.media.medium} {
       margin: 0;
       margin-right: ${scaleValue(30, 'medium')}px;
+    }
+
+    @media ${({ theme }) => theme.media.small} {
+      margin-right: 0;
+      margin-bottom: ${scaleValue(20, 'small')}px;
     }
   }
 

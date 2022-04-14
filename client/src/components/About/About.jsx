@@ -1,8 +1,8 @@
-import { AboutSection } from './AboutPageStyles';
+import { AboutSection } from './AboutStyles';
 
 const AboutPage = (props) => {
   return (
-    <AboutSection className={props.className}>
+    <AboutSection id={props.id}>
       <h2>About</h2>
     </AboutSection>
   );

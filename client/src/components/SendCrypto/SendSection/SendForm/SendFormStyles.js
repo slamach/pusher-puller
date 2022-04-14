@@ -1,7 +1,9 @@
 import { Button, scaleValue } from 'components/AppStyles';
 import styled from 'styled-components';
 
-export const FormInput = styled.input`
+export const FormInput = styled.input.withConfig({
+  shouldForwardProp: (prop) => true,
+})`
   padding: ${scaleValue(11)}px ${scaleValue(15)}px ${scaleValue(10)}px;
   font-size: ${scaleValue(14)}px;
   line-height: ${scaleValue(14)}px;
@@ -16,6 +18,14 @@ export const FormInput = styled.input`
     font-size: ${scaleValue(14, 'medium')}px;
     line-height: ${scaleValue(14, 'medium')}px;
     border-radius: ${scaleValue(20, 'medium')}px;
+  }
+
+  @media ${({ theme }) => theme.media.small} {
+    padding: ${scaleValue(11, 'small')}px ${scaleValue(15, 'small')}px
+      ${scaleValue(10, 'small')}px;
+    font-size: ${scaleValue(15, 'small')}px;
+    line-height: ${scaleValue(15, 'small')}px;
+    border-radius: ${scaleValue(20, 'small')}px;
   }
 
   &::placeholder {
@@ -39,12 +49,24 @@ export const SendFormContainer = styled.div`
     border-radius: ${scaleValue(15, 'medium')}px;
   }
 
+  @media ${({ theme }) => theme.media.small} {
+    width: 100%;
+    padding: ${scaleValue(20, 'small')}px;
+    box-shadow: 0 ${scaleValue(3, 'small')}px ${scaleValue(8, 'small')}px
+      ${scaleValue(1, 'small')}px rgba(21, 21, 27, 0.25);
+    border-radius: ${scaleValue(15, 'small')}px;
+  }
+
   ${FormInput} {
     width: 100%;
     margin-bottom: ${scaleValue(15)}px;
 
     @media ${({ theme }) => theme.media.medium} {
       margin-bottom: ${scaleValue(15, 'medium')}px;
+    }
+
+    @media ${({ theme }) => theme.media.small} {
+      margin-bottom: ${scaleValue(15, 'small')}px;
     }
   }
 

@@ -1,31 +1,20 @@
 import { ThemeProvider } from 'styled-components';
-import { theme } from './AppStyles';
+import { MainContainer, theme, VisuallyHidden } from './AppStyles';
 import { GlobalStyle } from './AppStyles';
 import Header from './Header/Header';
-import ReactFullpage from '@fullpage/react-fullpage';
-import SendCryptoPage from './SendCryptoPage/SendCryptoPage';
-import AboutPage from './AboutPage/AboutPage';
+import SendCrypto from './SendCrypto/SendCrypto';
+import About from './About/About';
 
 const App = (props) => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Header />
-      <ReactFullpage
-        touchSensitivity={8}
-        anchors={['sendcrypto', 'about']}
-        sectionSelector=".section"
-        render={(comp) => (
-          <ReactFullpage.Wrapper>
-            <SendCryptoPage className="section">
-              <h1>Page 1</h1>
-            </SendCryptoPage>
-            <AboutPage className="section">
-              <h1>Page 2</h1>
-            </AboutPage>
-          </ReactFullpage.Wrapper>
-        )}
-      />
+      <MainContainer>
+        <VisuallyHidden as="h1">Pusher &amp; Puller</VisuallyHidden>
+        <SendCrypto id="sendcrypto" />
+        <About id="about" />
+      </MainContainer>
     </ThemeProvider>
   );
 };

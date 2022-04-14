@@ -16,6 +16,13 @@ export const CryptoCardAddress = styled.p`
     font-size: ${scaleValue(10, 'medium')}px;
     line-height: ${scaleValue(12, 'medium')}px;
   }
+
+  @media ${({ theme }) => theme.media.small} {
+    top: ${scaleValue(20, 'small')}px;
+    right: ${scaleValue(20, 'small')}px;
+    font-size: ${scaleValue(10, 'small')}px;
+    line-height: ${scaleValue(12, 'small')}px;
+  }
 `;
 
 export const CryptoCardAmount = styled.p`
@@ -34,6 +41,13 @@ export const CryptoCardAmount = styled.p`
     line-height: ${scaleValue(22, 'medium')}px;
   }
 
+  @media ${({ theme }) => theme.media.small} {
+    bottom: ${scaleValue(20, 'small')}px;
+    left: ${scaleValue(20, 'small')}px;
+    font-size: ${scaleValue(18, 'small')}px;
+    line-height: ${scaleValue(22, 'small')}px;
+  }
+
   span {
     margin-left: ${scaleValue(10)}px;
     font-size: ${scaleValue(24)}px;
@@ -44,6 +58,12 @@ export const CryptoCardAmount = styled.p`
       margin-left: ${scaleValue(10, 'medium')}px;
       font-size: ${scaleValue(24, 'medium')}px;
       line-height: ${scaleValue(29, 'medium')}px;
+    }
+
+    @media ${({ theme }) => theme.media.small} {
+      margin-left: ${scaleValue(10, 'small')}px;
+      font-size: ${scaleValue(24, 'small')}px;
+      line-height: ${scaleValue(29, 'small')}px;
     }
   }
 `;
@@ -95,6 +115,14 @@ export const CryptoCardContainer = styled.div`
     border-radius: ${scaleValue(15, 'medium')}px;
   }
 
+  @media ${({ theme }) => theme.media.small} {
+    width: ${scaleValue(300, 'small')}px;
+    height: ${scaleValue(185, 'small')}px;
+    box-shadow: 0 ${scaleValue(3, 'small')}px ${scaleValue(8, 'small')}px
+      ${scaleValue(1, 'small')}px rgba(21, 21, 27, 0.25);
+    border-radius: ${scaleValue(15, 'small')}px;
+  }
+
   img {
     position: absolute;
     top: ${scaleValue(20)}px;
@@ -106,6 +134,12 @@ export const CryptoCardContainer = styled.div`
       top: ${scaleValue(20, 'medium')}px;
       left: ${scaleValue(20, 'medium')}px;
       width: ${scaleValue(32, 'medium')}px;
+    }
+
+    @media ${({ theme }) => theme.media.small} {
+      top: ${scaleValue(20, 'small')}px;
+      left: ${scaleValue(20, 'small')}px;
+      width: ${scaleValue(32, 'small')}px;
     }
   }
 `;

@@ -10,14 +10,14 @@ const TransactionHistory = (props) => {
     <TransactionHistoryContainer>
       <SectionTitle as="h3">Transaction History</SectionTitle>
       <TransactionsList>
-        <Transaction />
-        <Transaction />
-        <Transaction />
-        <Transaction />
-        <Transaction />
-        <Transaction />
-        <Transaction />
-        <Transaction />
+        <Transaction as="li" />
+        <Transaction as="li" />
+        <Transaction as="li" />
+        <Transaction as="li" />
+        <Transaction as="li" />
+        <Transaction as="li" />
+        <Transaction as="li" />
+        <Transaction as="li" />
       </TransactionsList>
     </TransactionHistoryContainer>
   );
