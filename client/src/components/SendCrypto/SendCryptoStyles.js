@@ -27,13 +27,13 @@ export const SendCryptoContainer = styled.div`
 `;
 
 export const SendCryptoSection = styled.section`
-  margin-bottom: ${scaleValue(200)}px;
+  margin-bottom: ${scaleValue(35)}px;
 
   @media ${({ theme }) => theme.media.medium} {
-    margin-bottom: ${scaleValue(200, 'medium')}px;
+    margin-bottom: ${scaleValue(50, 'medium')}px;
   }
 
   @media ${({ theme }) => theme.media.small} {
-    margin-bottom: ${scaleValue(150, 'small')}px;
+    margin-bottom: ${scaleValue(60, 'small')}px;
   }
 `;

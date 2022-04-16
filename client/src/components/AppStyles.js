@@ -20,7 +20,6 @@ export const scaleValue = (value, idealViewportWidthType = 'large') => {
 
 const breakpoints = {
   large: 1280,
-  supermedium: 1030,
   medium: 768,
   small: 360,
 };
@@ -29,7 +28,7 @@ export const theme = {
   breakpoints,
   media: {
     largeOnly: `screen and (min-width: ${breakpoints.large}px)`,
-    medium: `screen and (max-width: ${breakpoints.supermedium - 1}px)`,
+    medium: `screen and (max-width: ${breakpoints.large - 1}px)`,
     small: `screen and (max-width: ${breakpoints.medium - 1}px)`,
   },
   fonts: {
@@ -71,8 +70,9 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   html {
-    height: 100%;
+    min-height: 100%;
     overflow-x: hidden;
+    scroll-behavior: smooth;
   }
 
   body {
@@ -80,40 +80,38 @@ export const GlobalStyle = createGlobalStyle`
     min-height: 100%;
     margin: 0;
     overflow-x: hidden;
-    scroll-behavior: smooth;
     font-family: ${theme.fonts.inter};
-    font-size: ${scaleValue(16)}px;
-    line-height: ${scaleValue(20)}px;
+    font-size: ${scaleValue(18)}px;
+    line-height: ${scaleValue(22.5)}px;
     font-weight: 500;
     color: ${theme.colors.text};
     background:
       radial-gradient(
-        60% ${scaleValue(432)}px at 100% 0,
+        60% ${scaleValue(432)}px at right top,
         rgba(208, 74, 143, 0.5) 0%,
         rgba(208, 74, 143, 0) 100%
       ),
       radial-gradient(
-        50% ${scaleValue(360)}px at 50% 0,
+        50% ${scaleValue(360)}px at 50% top,
         rgba(83, 66, 194, 0.5) 0%,
         rgba(83, 66, 194, 0) 100%
       ),
       radial-gradient(
-        50% ${scaleValue(435)}px at 50% 100%,
+        50% ${scaleValue(435)}px at 50% bottom,
         rgba(83, 66, 194, 0.5) 0,
         rgba(83, 66, 194, 0) 100%
       ),
       radial-gradient(
-        50% ${scaleValue(350)}px at 100% 100%,
+        50% ${scaleValue(350)}px at right bottom,
         rgba(208, 74, 143, 0.5) 0,
         rgba(208, 74, 143, 0) 100%
       ),
       ${theme.colors.mainBackground};
     background-repeat: no-repeat;
-    background-attachment: fixed;
 
     @media ${({ theme }) => theme.media.medium} {
-      font-size: ${scaleValue(16, 'medium')}px;
-      line-height: ${scaleValue(20, 'medium')}px;
+      font-size: ${scaleValue(18, 'medium')}px;
+      line-height: ${scaleValue(22.5, 'medium')}px;
       background:
         radial-gradient(
           60% ${scaleValue(614, 'medium')}px at 100% 0,
@@ -137,7 +135,6 @@ export const GlobalStyle = createGlobalStyle`
         ),
         ${({ theme }) => theme.colors.mainBackground};
       background-repeat: no-repeat;
-      background-attachment: fixed;
     }
 
     @media ${({ theme }) => theme.media.small} {
@@ -166,12 +163,11 @@ export const GlobalStyle = createGlobalStyle`
         ),
         ${({ theme }) => theme.colors.mainBackground};
       background-repeat: no-repeat;
-      background-attachment: fixed;
     }
   }
 
   #root {
-    height: 100%;
+    min-height: 100%;
     overflow-x: hidden;
   }
 
@@ -218,6 +214,7 @@ export const SectionTitle = styled.p`
 `;
 
 export const Button = styled.button`
+  display: block;
   padding: ${scaleValue(8)}px ${scaleValue(20)}px ${scaleValue(10)}px;
   font-family: ${theme.fonts.kanit};
   font-size: ${scaleValue(16)}px;
@@ -238,12 +235,38 @@ export const Button = styled.button`
     }
   }
 
+  ${({ bordered }) => {
+    if (bordered) {
+      return `
+        padding: ${scaleValue(5)}px ${scaleValue(17)}px ${scaleValue(7)}px;
+        background-color: transparent;
+        border: ${scaleValue(3)}px solid ${theme.colors.pink};
+        @media ${theme.media.largeOnly} {
+          &:hover {
+            color: #ffffff;
+            background-color: ${theme.colors.pink};
+          }
+        }
+      `;
+    }
+  }}
+
   @media ${({ theme }) => theme.media.medium} {
     padding: ${scaleValue(8, 'medium')}px ${scaleValue(20, 'medium')}px
       ${scaleValue(10, 'medium')}px;
     font-size: ${scaleValue(16, 'medium')}px;
     line-height: ${scaleValue(16, 'medium')}px;
     border-radius: ${scaleValue(20, 'medium')}px;
+
+    ${({ bordered }) => {
+      if (bordered) {
+        return `
+          padding: ${scaleValue(5, 'medium')}px ${scaleValue(17, 'medium')}px
+            ${scaleValue(7, 'medium')}px;
+          border: ${scaleValue(3, 'medium')}px solid ${theme.colors.pink};
+        `;
+      }
+    }}
   }
 
   @media ${({ theme }) => theme.media.small} {
@@ -251,17 +274,27 @@ export const Button = styled.button`
     font-size: ${scaleValue(14, 'small')}px;
     line-height: ${scaleValue(14, 'small')}px;
     border-radius: ${scaleValue(16, 'small')}px;
+
+    ${({ bordered }) => {
+      if (bordered) {
+        return `
+          padding: ${scaleValue(7.5, 'small')}px ${scaleValue(13.5, 'small')}px;
+          border: ${scaleValue(3, 'small')}px solid ${theme.colors.pink};
+        `;
+      }
+    }}
   }
 `;
 
 export const MainContainer = styled.main`
   padding: 0 ${scaleValue(50)}px;
+  overflow: hidden;
 
   @media ${({ theme }) => theme.media.medium} {
     padding: 0 ${scaleValue(25, 'medium')}px;
   }
 
   @media ${({ theme }) => theme.media.small} {
-    padding: 0 ${scaleValue(15, 'medium')}px;
+    padding: 0 ${scaleValue(15, 'small')}px;
   }
 `;
