@@ -45,17 +45,32 @@ export const StyledNav = styled.nav`
 `;
 
 export const StyledHeader = styled.header`
-  margin-bottom: ${scaleValue(15)}px;
-  padding: ${scaleValue(20)}px ${scaleValue(50)}px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: ${scaleValue(15)}px ${scaleValue(50)}px;
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 0 0 ${scaleValue(15)}px ${scaleValue(15)}px;
+
+  ${({ fixed, theme }) => {
+    if (fixed) {
+      return `
+        background-color: ${theme.colors.secondaryBackground};
+      `;
+    }
+  }}
 
   @media ${({ theme }) => theme.media.medium} {
-    margin-bottom: ${scaleValue(15, 'medium')}px;
-    padding: ${scaleValue(15, 'medium')}px ${scaleValue(25, 'medium')}px;
+    padding: ${scaleValue(10, 'medium')}px ${scaleValue(25, 'medium')}px;
+    border-radius: 0 0 ${scaleValue(15, 'medium')}px
+      ${scaleValue(15, 'medium')}px;
   }
 
   @media ${({ theme }) => theme.media.small} {
-    margin-bottom: ${scaleValue(15, 'small')}px;
     padding: ${scaleValue(10, 'small')}px ${scaleValue(15, 'small')}px;
+    border-radius: 0 0 ${scaleValue(15, 'small')}px ${scaleValue(15, 'small')}px;
   }
 
   ${HeaderLogo} {

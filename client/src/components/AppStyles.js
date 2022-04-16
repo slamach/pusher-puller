@@ -287,14 +287,14 @@ export const Button = styled.button`
 `;
 
 export const MainContainer = styled.main`
-  padding: 0 ${scaleValue(50)}px;
+  padding: ${scaleValue(88.5)}px ${scaleValue(50)}px 0;
   overflow: hidden;
 
   @media ${({ theme }) => theme.media.medium} {
-    padding: 0 ${scaleValue(25, 'medium')}px;
+    padding: ${scaleValue(78.5, 'medium')}px ${scaleValue(25, 'medium')}px 0;
   }
 
   @media ${({ theme }) => theme.media.small} {
-    padding: 0 ${scaleValue(15, 'small')}px;
+    padding: ${scaleValue(78.5, 'small')}px ${scaleValue(15, 'small')}px 0;
   }
 `;
