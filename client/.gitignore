@@ -3,6 +3,7 @@
 
 # Production
 /build/
+/src/contracts/
 
 # IDE
 .idea/

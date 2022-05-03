@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "deploy": "hardhat deploy",
+    "node": "hardhat node",
+    "deploy": "hardhat run scripts/deploy.js --network localhost",
     "test": "hardhat test",
+    "clean": "hardhat clean",
     "prepare": "cd .. && husky install smart_contract/.husky"
   },
   "lint-staged": {
