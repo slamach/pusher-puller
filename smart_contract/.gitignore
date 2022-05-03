@@ -1,9 +1,17 @@
-node_modules
+# Dependencies
+/node_modules/
+
+# IDE
+.idea/
+.vscode/
+
+# Hardhat files
+cache
+artifacts
+
+# Misc
+.DS_Store
 .env
 coverage
 coverage.json
 typechain
-
-#Hardhat files
-cache
-artifacts
