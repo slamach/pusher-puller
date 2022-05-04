@@ -74,7 +74,13 @@ const AboutPage = (props) => {
       </p>
       <AboutButtonContainer>
         <li>
-          <Button>Connect Wallet</Button>
+          <Button
+            type="button"
+            disabled={props.account}
+            onClick={() => props.connectWallet()}
+          >
+            {props.account ? 'Connected' : 'Connect Wallet'}
+          </Button>
         </li>
         <li>
           <Button

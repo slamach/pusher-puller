@@ -1,5 +1,5 @@
 import { VisuallyHidden } from 'components/AppStyles';
-import CryptoCard from './CryptoCard/CryptoCard';
+import CryptoCard from './CryptoCard/CryptoCardContainer';
 import SendForm from './SendForm/SendForm';
 import { SendSectionContainer } from './SendSectionStyles';
 

@@ -251,6 +251,17 @@ export const Button = styled.button`
     }
   }}
 
+  ${({ disabled }) => {
+    if (disabled) {
+      return `
+        color: #eeeeee;
+        background-color: ${theme.colors.pinkHover};
+        opacity: 0.9;
+        cursor: default;
+      `;
+    }
+  }}
+
   @media ${({ theme }) => theme.media.medium} {
     padding: ${scaleValue(8, 'medium')}px ${scaleValue(20, 'medium')}px
       ${scaleValue(10, 'medium')}px;

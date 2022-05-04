@@ -7,11 +7,9 @@ const Header = (props) => {
   const [headerFixed, setHeaderFixed] = useState(false);
   useEffect(() => {
     const onScroll = (event) => {
-      if (window.scrollY) {
-        console.log(true);
+      if (window.scrollY > 0) {
         setHeaderFixed(true);
       } else {
-        console.log(false);
         setHeaderFixed(false);
       }
     };
@@ -33,7 +31,13 @@ const Header = (props) => {
             <a href="#about">About</a>
           </li>
         </NavList>
-        <Button type="button">Connect Wallet</Button>
+        <Button
+          type="button"
+          disabled={props.account}
+          onClick={() => props.connectWallet()}
+        >
+          {props.account ? 'Connected' : 'Connect Wallet'}
+        </Button>
       </StyledNav>
     </StyledHeader>
   );
