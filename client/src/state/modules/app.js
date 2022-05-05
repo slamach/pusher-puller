@@ -74,11 +74,6 @@ const handleAccountChanged = (account) => async (dispatch, getState) => {
 
 export const initializeConnection = () => async (dispatch, getState) => {
   if (!checkWallet()) {
-    dispatch(
-      triggerNotification(
-        'No Ethereum wallet was detected. Please install Metamask.'
-      )
-    );
     return;
   }
 

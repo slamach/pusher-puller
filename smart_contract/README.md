@@ -9,6 +9,17 @@ To make the pre-commit hook work, you need to run `npm install` when the project
 
 If the project is initialized as a repository later, you need to additionally execute `npm run prepare`.
 
+### Test your smart contract
 ```
 npm run test
+```
+
+### Run a node
+```
+npm run node
+```
+
+### Deploy your smart contract
+```
+npm run deploy
 ```

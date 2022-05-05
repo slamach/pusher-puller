@@ -1,6 +1,24 @@
 import { Button, scaleValue } from 'components/AppStyles';
 import styled from 'styled-components';
 
+export const ErrorMessage = styled.p`
+  margin: 0;
+  font-size: ${scaleValue(14)}px;
+  line-height: ${scaleValue(17)}px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.text};
+
+  @media ${({ theme }) => theme.media.medium} {
+    font-size: ${scaleValue(14, 'medium')}px;
+    line-height: ${scaleValue(17, 'medium')}px;
+  }
+
+  @media ${({ theme }) => theme.media.small} {
+    font-size: ${scaleValue(15, 'small')}px;
+    line-height: ${scaleValue(18, 'small')}px;
+  }
+`;
+
 export const FormInput = styled.input.withConfig({
   shouldForwardProp: (prop) => true,
 })`
@@ -59,6 +77,18 @@ export const SendFormContainer = styled.div`
 
   ${FormInput} {
     width: 100%;
+    margin-bottom: ${scaleValue(15)}px;
+
+    @media ${({ theme }) => theme.media.medium} {
+      margin-bottom: ${scaleValue(15, 'medium')}px;
+    }
+
+    @media ${({ theme }) => theme.media.small} {
+      margin-bottom: ${scaleValue(15, 'small')}px;
+    }
+  }
+
+  ${ErrorMessage} {
     margin-bottom: ${scaleValue(15)}px;
 
     @media ${({ theme }) => theme.media.medium} {

@@ -6,7 +6,11 @@ Web 3.0 project created for learning purposes.
 You can authorize with your wallet, send ETH, attach messages and images from [Giphy](https://giphy.com).
 
 ### Built With
-- 
+- React
+- Redux
+- Ethers
+- Solidity
+- Hardhat
 
 ## Contact
 Dmitry Sviridov  
