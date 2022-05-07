@@ -38,6 +38,7 @@ export const theme = {
   colors: {
     mainBackground: '#15151b',
     secondaryBackground: '#262632',
+    imgBackground: '#464652',
     text: '#f5f4fa',
     pink: '#ca478a',
     pinkHover: '#b33f7e',

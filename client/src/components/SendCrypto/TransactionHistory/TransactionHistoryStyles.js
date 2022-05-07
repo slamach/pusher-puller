@@ -21,7 +21,10 @@ export const TransactionsList = styled.ul`
 
   ${TransactionContainer} {
     @media ${({ theme }) => theme.media.small} {
-      &:nth-last-child(-n + 4) {
+      &:nth-last-child(5),
+      &:nth-last-child(6)
+      &:nth-last-child(7)
+      &:nth-last-child(8) {
         display: none;
       }
     }

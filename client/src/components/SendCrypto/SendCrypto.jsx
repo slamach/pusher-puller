@@ -1,7 +1,7 @@
 import { VisuallyHidden } from 'components/AppStyles';
 import { SendCryptoContainer, SendCryptoSection } from './SendCryptoStyles';
 import SendSection from './SendSection/SendSection';
-import TransactionHistory from './TransactionHistory/TransactionHistory';
+import TransactionHistory from './TransactionHistory/TransactionHistoryContainer';
 
 const SendCryptoPage = (props) => {
   return (

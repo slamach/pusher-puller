@@ -4,9 +4,11 @@ import GiphyExample from 'assets/img/giphy-example.jpg';
 const Transaction = (props) => {
   return (
     <TransactionContainer as={props.as}>
-      <img src={GiphyExample} alt="Giphy Example" />
+      <div>{/* <img src={GiphyExample} alt="Giphy Example" /> */}</div>
       <p>
-        Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ip...
+        {props.content?.length >= 70
+          ? props.content.slice(0, 67) + '...'
+          : props.content}
       </p>
     </TransactionContainer>
   );

@@ -12,11 +12,11 @@ export const TransactionContainer = styled.div`
     border-radius: ${scaleValue(20, 'medium')}px;
   }
 
+  div,
   img {
     width: 100%;
     height: ${scaleValue(150)}px;
     border-radius: ${scaleValue(20)}px ${scaleValue(20)}px 0 0;
-    object-fit: cover;
 
     @media ${({ theme }) => theme.media.medium} {
       height: ${scaleValue(150, 'medium')}px;
@@ -29,6 +29,14 @@ export const TransactionContainer = styled.div`
       border-radius: ${scaleValue(20, 'medium')}px ${scaleValue(20, 'medium')}px
         0 0;
     }
+  }
+
+  div {
+    background-color: ${({theme}) => theme.colors.imgBackground};
+  }
+
+  img {
+    object-fit: cover;
   }
 
   p {

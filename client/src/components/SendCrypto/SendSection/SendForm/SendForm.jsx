@@ -8,8 +8,12 @@ const SendForm = (props) => {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    props.addTransaction(data.value, data.reciever, data.message, data.keyword);
+    reset();
+  };
 
   let errorMessage;
   if (errors.reciever?.type === 'required') {
@@ -54,7 +58,7 @@ const SendForm = (props) => {
           placeholder="Giphy Keyword"
           onKeyDown={focusNextInput}
           enterKeyHint="next"
-          {...register('keywork')}
+          {...register('keyword')}
         />
         <FormInput
           type="text"
