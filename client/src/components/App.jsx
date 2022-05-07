@@ -10,7 +10,8 @@ import { useEffect } from 'react';
 const App = (props) => {
   useEffect(() => {
     props.initializeConnection();
-  });
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -20,7 +21,9 @@ const App = (props) => {
         <VisuallyHidden as="h1">Pusher &amp; Puller</VisuallyHidden>
         <SendCrypto id="sendcrypto" />
         <About id="about" />
-        <Notification isVisible={props.notificationStatus}>{props.notification}</Notification>
+        <Notification isVisible={props.notificationStatus}>
+          {props.notification}
+        </Notification>
       </MainContainer>
     </ThemeProvider>
   );

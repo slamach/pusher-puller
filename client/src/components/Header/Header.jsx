@@ -15,7 +15,7 @@ const Header = (props) => {
     };
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
-  });
+  }, []);
 
   return (
     <StyledHeader fixed={headerFixed}>

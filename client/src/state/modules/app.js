@@ -23,7 +23,7 @@ const appSlice = createSlice({
     setTransactions: (state, action) => {
       state.transactions = action.payload;
     },
-    addTransaction: (state, action) => {
+    unshiftTransaction: (state, action) => {
       if (!state.transactions) {
         return;
       }
@@ -53,13 +53,13 @@ const appSlice = createSlice({
 });
 
 export default appSlice.reducer;
-export const { setAccount, setBalance, resetConnection } = appSlice.actions;
 
 const { ethereum } = window;
+const DEPLOY_NETWORK_ID = '1337';
 const ERROR_CODE_REJECTED_BY_USER = 4001;
 const NOTIFICATION_DURATION = 5000;
 
-const triggerNotification =
+export const triggerNotification =
   (notificationContent) => async (dispatch, getState) => {
     const currentTimer = getState().app.notificationTimer;
     if (currentTimer) {
@@ -76,16 +76,25 @@ const triggerNotification =
 
 const checkWallet = () => ethereum;
 
+const checkNetwork = async () =>
+  (await ethereum.request({ method: 'net_version' })) === DEPLOY_NETWORK_ID;
+
 const handleAccountChanged = (account) => async (dispatch, getState) => {
   const provider = new ethers.providers.Web3Provider(ethereum);
   const balance = (await provider.getBalance(account)).toString();
-
-  if (!getState().app.account) {
-    dispatch(getTransactionHistory());
-  }
-
   dispatch(appSlice.actions.setAccount(account));
   dispatch(appSlice.actions.setBalance(balance));
+};
+
+const initializeAccounts = () => async (dispatch, getState) => {
+  const [account] = await ethereum.request({
+    method: 'eth_accounts',
+  });
+
+  if (account) {
+    dispatch(handleAccountChanged(account));
+    dispatch(getTransactionHistory());
+  }
 };
 
 export const initializeConnection = () => async (dispatch, getState) => {
@@ -93,23 +102,46 @@ export const initializeConnection = () => async (dispatch, getState) => {
     return;
   }
 
-  const [account] = await ethereum.request({
-    method: 'eth_accounts',
-  });
-
-  if (account) {
-    dispatch(handleAccountChanged(account));
+  if (await checkNetwork()) {
+    dispatch(initializeAccounts());
   }
 
   window.ethereum.on('accountsChanged', ([newAccount]) => {
     if (!newAccount) {
+      console.log(123);
       dispatch(appSlice.actions.resetConnection());
     }
-
     dispatch(handleAccountChanged(newAccount));
   });
-  window.ethereum.on('chainChanged', ([networkId]) => {
+  window.ethereum.on('chainChanged', async (networkId) => {
     dispatch(appSlice.actions.resetConnection());
+    if (await checkNetwork(Number(networkId).toString())) {
+      dispatch(initializeAccounts());
+    }
+  });
+
+  const provider = new ethers.providers.Web3Provider(ethereum);
+  const transactionsContract = new ethers.Contract(
+    transactionsAddress.Transactions,
+    transactionsArtifact.abi,
+    provider.getSigner()
+  );
+
+  const startBlockNumber = await provider.getBlockNumber();
+  transactionsContract.on('TransactionAdded', (...args) => {
+    const event = args[args.length - 1];
+    if (event.blockNumber <= startBlockNumber) {
+      return;
+    }
+    dispatch(
+      appSlice.actions.unshiftTransaction({
+        sender: args[0],
+        reciever: args[1],
+        amount: args[2].toString(),
+        message: args[3],
+        keyword: args[4],
+      })
+    );
   });
 };
 
@@ -123,11 +155,17 @@ export const connectWallet = () => async (dispatch, getState) => {
     return;
   }
 
+  if (!(await checkNetwork())) {
+    dispatch(triggerNotification('Please connect wallet to Localhost:8545.'));
+    return;
+  }
+
   try {
     const [account] = await ethereum.request({
       method: 'eth_requestAccounts',
     });
     dispatch(handleAccountChanged(account));
+    dispatch(getTransactionHistory());
   } catch (error) {
     switch (error.code) {
       case ERROR_CODE_REJECTED_BY_USER:
@@ -186,9 +224,20 @@ export const addTransaction =
         transactionsArtifact.abi,
         provider.getSigner()
       );
-      await transactionsContract.addTransaction(reciever, message, keyword, {
-        value: ethers.utils.parseEther(value),
-      });
+      const tx = await transactionsContract.addTransaction(
+        reciever,
+        message,
+        keyword,
+        {
+          value: ethers.utils.parseEther(value),
+        }
+      );
+      await tx.wait();
+      dispatch(
+        appSlice.actions.setBalance(
+          (await provider.getBalance(getState().app.account)).toString()
+        )
+      );
       dispatch(
         triggerNotification('Transaction was successfully added to blockchain.')
       );
@@ -197,7 +246,6 @@ export const addTransaction =
         case ERROR_CODE_REJECTED_BY_USER:
           break;
         default:
-          console.log(error);
           dispatch(triggerNotification('Unexpected error from Metamask.'));
       }
     }

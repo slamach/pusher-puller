@@ -8,11 +8,9 @@ const SendForm = (props) => {
     register,
     formState: { errors },
     handleSubmit,
-    reset,
   } = useForm();
   const onSubmit = (data) => {
     props.addTransaction(data.value, data.reciever, data.message, data.keyword);
-    reset();
   };
 
   let errorMessage;
