@@ -20,11 +20,19 @@ export const TransactionsList = styled.ul`
   }
 
   ${TransactionContainer} {
+    div {
+      background-color: ${({ theme }) => theme.colors.pink};
+    }
+
+    &:nth-child(3n) {
+      div {
+        background-color: ${({ theme }) => theme.colors.purple};
+      }
+    }
+
     @media ${({ theme }) => theme.media.small} {
       &:nth-last-child(5),
-      &:nth-last-child(6)
-      &:nth-last-child(7)
-      &:nth-last-child(8) {
+      &:nth-last-child(6) &:nth-last-child(7) &:nth-last-child(8) {
         display: none;
       }
     }

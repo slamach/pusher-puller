@@ -13,7 +13,7 @@ const TransactionHistory = (props) => {
         props.transactions ? (
           <TransactionsList>
             {props.transactions?.map((item, index) => (
-              <Transaction as="li" key={index} content={item.message} />
+              <Transaction as="li" key={index} content={item.message} keyword={item.keyword} />
             ))}
           </TransactionsList>
         ) : (

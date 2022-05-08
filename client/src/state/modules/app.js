@@ -195,7 +195,7 @@ export const getTransactionHistory = () => async (dispatch, getState) => {
               reciever: item.reciever,
               amount: item.amount.toString(),
               message: item.message,
-              keyword: item.letword,
+              keyword: item.keyword,
             };
           })
           .reverse()
