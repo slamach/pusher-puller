@@ -1,9 +1,12 @@
-# Pusher & Puller (WIP)
+# Pusher & Puller
+
+![Send crypto section screenshot](/doc/screenshot1.png)
+![About section screenshot](/doc/screenshot2.png)
 
 ## About the Project
 Web 3.0 project created for learning purposes.  
 
-You can authorize with your wallet, send ETH, attach messages and images from [Giphy](https://giphy.com).
+You can authorize with Metamask wallet, send ETH, attach messages and images from [Giphy](https://giphy.com).
 
 ### Built With
 - React

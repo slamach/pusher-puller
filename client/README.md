@@ -9,6 +9,8 @@ To make the pre-commit hook work, you need to run `npm install` when the project
 
 If the project is initialized as a repository later, you need to additionally execute `npm run prepare`.
 
+Also you need to make your own `.env` or `.env.local` file from `.env.example`. Currently there is only a Giphy API key.
+
 ### Development
 ```
 npm start
