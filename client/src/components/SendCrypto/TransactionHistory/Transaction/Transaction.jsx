@@ -19,7 +19,7 @@ const Transaction = (props) => {
           }&q=${props.keyword.replace(/\s/g, '')}&limit=1`
         );
         const { data } = await response.json();
-        setImageSource(data[0]?.images.downsized_medium.url);
+        setImageSource(data[0].images.downsized_medium.url);
       } catch (error) {}
     };
     fetchGif();
