@@ -31,8 +31,8 @@ export const TransactionsList = styled.ul`
     }
 
     @media ${({ theme }) => theme.media.small} {
-      &:nth-last-child(5),
-      &:nth-last-child(6) &:nth-last-child(7) &:nth-last-child(8) {
+      &:nth-child(5),
+      &:nth-child(6) &:nth-child(7) &:nth-child(8) {
         display: none;
       }
     }
