@@ -21,6 +21,10 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Build project 🔧
         run: npm ci && npm run build
+        env:
+          REACT_APP_GIPHY_API_KEY: ${{ secrets.REACT_APP_GIPHY_API_KEY }}
+          REACT_APP_DEPLOY_NETWORK_RPC_URL: ${{ secrets.REACT_APP_DEPLOY_NETWORK_RPC_URL }}
+          REACT_APP_DEPLOY_NETWORK_ID: ${{ secrets.REACT_APP_DEPLOY_NETWORK_ID }}
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
         with:
