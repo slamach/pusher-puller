@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ethers } from 'ethers';
-import transactionsAddress from 'contracts/Transactions-contract-address.json';
+import transactionsAddresses from 'contracts/Transactions-contract-addresses.json';
 import transactionsArtifact from 'contracts/Transactions.json';
 
 const appSlice = createSlice({
@@ -9,6 +9,7 @@ const appSlice = createSlice({
     account: null,
     balance: null,
     transactions: null,
+    transactionsLoading: false,
     notification: null,
     notificationStatus: false,
     notificationTimer: null,
@@ -22,6 +23,9 @@ const appSlice = createSlice({
     },
     setTransactions: (state, action) => {
       state.transactions = action.payload;
+    },
+    setTransactionsLoading: (state, action) => {
+      state.transactionsLoading = action.payload;
     },
     unshiftTransaction: (state, action) => {
       if (!state.transactions) {
@@ -44,10 +48,6 @@ const appSlice = createSlice({
     resetConnection: (state, action) => {
       state.account = null;
       state.balance = null;
-      state.transactions = null;
-      state.notification = null;
-      state.notificationStatus = null;
-      state.notificationTimer = null;
     },
   },
 });
@@ -55,7 +55,6 @@ const appSlice = createSlice({
 export default appSlice.reducer;
 
 const { ethereum } = window;
-const DEPLOY_NETWORK_ID = '1337';
 const ERROR_CODE_REJECTED_BY_USER = 4001;
 const NOTIFICATION_DURATION = 5000;
 
@@ -76,8 +75,8 @@ export const triggerNotification =
 
 const checkWallet = () => ethereum;
 
-const checkNetwork = async () =>
-  (await ethereum.request({ method: 'net_version' })) === DEPLOY_NETWORK_ID;
+const checkNetwork = () =>
+  ethereum.networkVersion === process.env.REACT_APP_DEPLOY_NETWORK_ID;
 
 const handleAccountChanged = (account) => async (dispatch, getState) => {
   const provider = new ethers.providers.Web3Provider(ethereum);
@@ -93,7 +92,6 @@ const initializeAccounts = () => async (dispatch, getState) => {
 
   if (account) {
     dispatch(handleAccountChanged(account));
-    dispatch(getTransactionHistory());
   }
 };
 
@@ -102,27 +100,28 @@ export const initializeConnection = () => async (dispatch, getState) => {
     return;
   }
 
-  if (await checkNetwork()) {
+  if (checkNetwork()) {
     dispatch(initializeAccounts());
   }
 
+  dispatch(getTransactionHistory());
+
   window.ethereum.on('accountsChanged', ([newAccount]) => {
     if (!newAccount) {
-      console.log(123);
       dispatch(appSlice.actions.resetConnection());
     }
     dispatch(handleAccountChanged(newAccount));
   });
   window.ethereum.on('chainChanged', async (networkId) => {
     dispatch(appSlice.actions.resetConnection());
-    if (await checkNetwork(Number(networkId).toString())) {
+    if (checkNetwork(Number(networkId).toString())) {
       dispatch(initializeAccounts());
     }
   });
 
   const provider = new ethers.providers.Web3Provider(ethereum);
   const transactionsContract = new ethers.Contract(
-    transactionsAddress.Transactions,
+    transactionsAddresses[process.env.REACT_APP_DEPLOY_NETWORK_ID],
     transactionsArtifact.abi,
     provider.getSigner()
   );
@@ -155,8 +154,12 @@ export const connectWallet = () => async (dispatch, getState) => {
     return;
   }
 
-  if (!(await checkNetwork())) {
-    dispatch(triggerNotification('Please connect wallet to Localhost:8545.'));
+  if (!checkNetwork()) {
+    dispatch(
+      triggerNotification(
+        `Please connect wallet to the network with id ${process.env.REACT_APP_DEPLOY_NETWORK_ID}.`
+      )
+    );
     return;
   }
 
@@ -178,11 +181,13 @@ export const connectWallet = () => async (dispatch, getState) => {
 
 export const getTransactionHistory = () => async (dispatch, getState) => {
   try {
-    const provider = new ethers.providers.Web3Provider(ethereum);
+    const provider = new ethers.providers.JsonRpcProvider(
+      process.env.REACT_APP_DEPLOY_NETWORK_RPC_URL
+    );
     const transactionsContract = new ethers.Contract(
-      transactionsAddress.Transactions,
+      transactionsAddresses[process.env.REACT_APP_DEPLOY_NETWORK_ID],
       transactionsArtifact.abi,
-      provider.getSigner()
+      provider
     );
     const transactionHistory =
       await transactionsContract.getTransactionHistory();
@@ -220,7 +225,7 @@ export const addTransaction =
     try {
       const provider = new ethers.providers.Web3Provider(ethereum);
       const transactionsContract = new ethers.Contract(
-        transactionsAddress.Transactions,
+        transactionsAddresses[process.env.REACT_APP_DEPLOY_NETWORK_ID],
         transactionsArtifact.abi,
         provider.getSigner()
       );
@@ -232,14 +237,14 @@ export const addTransaction =
           value: ethers.utils.parseEther(value),
         }
       );
+      dispatch(
+        triggerNotification('Transaction was successfully added to blockchain.')
+      );
       await tx.wait();
       dispatch(
         appSlice.actions.setBalance(
           (await provider.getBalance(getState().app.account)).toString()
         )
-      );
-      dispatch(
-        triggerNotification('Transaction was successfully added to blockchain.')
       );
     } catch (error) {
       switch (error.code) {

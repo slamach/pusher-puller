@@ -4,11 +4,13 @@
 ![About section screenshot](/doc/screenshot2.png)
 
 ## About the Project
-Web 3.0 project created for learning purposes.  
 
-You can authorize with Metamask wallet, send ETH, attach messages and images from [Giphy](https://giphy.com).
+Web 3.0 project created for learning purposes.
+
+You can authorize with Metamask wallet, send ETH, attach messages and images from [Giphy](https://giphy.com). Deployed project works over Ropsten Test Network.
 
 ### Built With
+
 - React
 - Redux
 - Ethers
@@ -16,6 +18,7 @@ You can authorize with Metamask wallet, send ETH, attach messages and images fro
 - Hardhat
 
 ## Contact
+
 Dmitry Sviridov  
 Telegram: [slamach](https://t.me/slamach)  
 Email: sviridov.dvv@gmail.com

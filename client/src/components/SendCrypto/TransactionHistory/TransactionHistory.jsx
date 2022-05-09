@@ -9,23 +9,19 @@ const TransactionHistory = (props) => {
   return (
     <TransactionHistoryContainer>
       <SectionTitle as="h3">Transaction History</SectionTitle>
-      {props.account ? (
-        props.transactions ? (
-          <TransactionsList>
-            {props.transactions?.map((item, index) => (
-              <Transaction
-                as="li"
-                key={index}
-                content={item.message}
-                keyword={item.keyword}
-              />
-            ))}
-          </TransactionsList>
-        ) : (
-          <p>There are no transactions yet.</p>
-        )
+      {props.transactions ? (
+        <TransactionsList>
+          {props.transactions?.map((item, index) => (
+            <Transaction
+              as="li"
+              key={index}
+              content={item.message}
+              keyword={item.keyword}
+            />
+          ))}
+        </TransactionsList>
       ) : (
-        <p>Please connect Metamask account to see the transaction history.</p>
+        <p>There are no transactions yet.</p>
       )}
     </TransactionHistoryContainer>
   );

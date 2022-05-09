@@ -8,6 +8,7 @@ async function main() {
         'gets automatically created and destroyed every time. Use the Hardhat' +
         " option '--network localhost'"
     );
+    return;
   }
 
   const [deployer] = await ethers.getSigners();
@@ -33,15 +34,31 @@ async function main() {
 
 function saveFrontendFiles(contracts) {
   const contractsDir = path.resolve(__dirname, '../../client/src/contracts');
+  const networkId =
+    network.name === 'localhost'
+      ? config.networks.hardhat.chainId
+      : network.config.chainId;
 
   if (!fs.existsSync(contractsDir)) {
     fs.mkdirSync(contractsDir);
   }
 
   for (key in contracts) {
+    const addressesDir = path.resolve(
+      contractsDir,
+      key + '-contract-addresses.json'
+    );
+    let oldAddresses = {};
+    if (fs.existsSync(addressesDir)) {
+      oldAddresses = JSON.parse(fs.readFileSync(addressesDir));
+    }
     fs.writeFileSync(
-      path.resolve(contractsDir, key + '-contract-address.json'),
-      JSON.stringify({ [key]: contracts[key].address }, undefined, 2)
+      path.resolve(contractsDir, key + '-contract-addresses.json'),
+      JSON.stringify(
+        { ...oldAddresses, [networkId]: contracts[key].address },
+        undefined,
+        2
+      )
     );
 
     const ContractArtifact = artifacts.readArtifactSync(key);
