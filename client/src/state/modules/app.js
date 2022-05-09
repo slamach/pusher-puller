@@ -96,6 +96,8 @@ const initializeAccounts = () => async (dispatch, getState) => {
 };
 
 export const initializeConnection = () => async (dispatch, getState) => {
+  dispatch(getTransactionHistory());
+
   if (!checkWallet()) {
     return;
   }
@@ -103,8 +105,6 @@ export const initializeConnection = () => async (dispatch, getState) => {
   if (checkNetwork()) {
     dispatch(initializeAccounts());
   }
-
-  dispatch(getTransactionHistory());
 
   window.ethereum.on('accountsChanged', ([newAccount]) => {
     if (!newAccount) {
@@ -168,7 +168,6 @@ export const connectWallet = () => async (dispatch, getState) => {
       method: 'eth_requestAccounts',
     });
     dispatch(handleAccountChanged(account));
-    dispatch(getTransactionHistory());
   } catch (error) {
     switch (error.code) {
       case ERROR_CODE_REJECTED_BY_USER:
