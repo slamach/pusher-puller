@@ -37,6 +37,10 @@ export const HeaderLogo = styled.a`
   @media ${({ theme }) => theme.media.small} {
     width: ${scaleValue(90, 'small')}px;
   }
+
+  img {
+    width: 100%;
+  }
 `;
 
 export const StyledNav = styled.nav`
