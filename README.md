@@ -7,7 +7,7 @@
 
 Web 3.0 project created for learning purposes.
 
-You can authorize with Metamask wallet, send ETH, attach messages and images from [Giphy](https://giphy.com). Deployed project works over Ropsten Test Network.
+You can authorize with Metamask wallet, send ETH, attach messages and images from [Giphy](https://giphy.com). Deployed project works over Goerli Test Network.
 
 ### Built With
 
