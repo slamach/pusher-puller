@@ -19,6 +19,6 @@ You can authorize with Metamask wallet, send ETH, attach messages and images fro
 
 ## Contact
 
-Dmitry Sviridov  
+Dmitrii Sviridov  
 Telegram: [slamach](https://t.me/slamach)  
 Email: sviridov.dvv@gmail.com
