@@ -10,7 +10,7 @@ To make the pre-commit hook work, you need to run `npm install` when the project
 
 If the project is initialized as a repository later, you need to additionally execute `npm run prepare`.
 
-Also you need to make your own `.env` file from `.env.example` to deploy it to Goerli Test Network.
+Also you need to make your own `.env` file from `.env.example` to deploy it to Sepolia Test Network.
 
 ### Test smart contracts
 
@@ -30,8 +30,8 @@ npm run node
 npm run deploy:localhost
 ```
 
-### Deploy smart contracts to Goerli Test Network
+### Deploy smart contracts to Sepolia Test Network
 
 ```
-npm run deploy:goerli
+npm run deploy:sepolia
 ```

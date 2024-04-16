@@ -60,9 +60,9 @@ const AboutPage = (props) => {
       </AboutSlogan>
       <p>
         Open source project created for the purpose of learning Web 3.0. It uses
-        React, ethers.js, Alchemy etc. Project works over Goerli
-        Test Network. It is created completely from scratch only using some
-        references. Your can find the source code{' '}
+        React, ethers.js, Alchemy etc. Project works over Sepolia Test Network.
+        It is created completely from scratch only using some references. Your
+        can find the source code{' '}
         <a
           href="https://github.com/slamach/pusher-puller"
           target="_blank"
